@@ -1,6 +1,5 @@
 {
   "name": "hotel",
-  "homepage": "https://maxinadalin.github.io/HotelConMachineLearning/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
