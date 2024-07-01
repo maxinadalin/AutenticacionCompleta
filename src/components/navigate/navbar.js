@@ -8,9 +8,8 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
-import video from "../../media/video/video.mp4"
-
-
+import video from "../../media/video/video.mp4";
+import { Link } from "react-router-dom";
 
 const navigation = {
   categories: [
@@ -148,6 +147,116 @@ function classNames(...classes) {
 
 function NavBar() {
   const [open, setOpen] = useState(false);
+
+
+  
+  // const authLinks = (
+  //   <Menu as="div" className="relative inline-block text-left">
+  //     <div>
+  //       <Menu.Button className="">
+  //       <div className="flex -space-x-2 overflow-hidden">
+  //       <img
+  //         className="inline-block h-10 w-10 rounded-full ring-2 ring-pink-100"
+  //         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+  //         alt=""
+  //       />
+  //     </div>
+  //       </Menu.Button>
+  //     </div>
+
+  //     <Transition
+  //       as={Fragment}
+  //       enter="transition ease-out duration-100"
+  //       enterFrom="transform opacity-0 scale-95"
+  //       enterTo="transform opacity-100 scale-100"
+  //       leave="transition ease-in duration-75"
+  //       leaveFrom="transform opacity-100 scale-100"
+  //       leaveTo="transform opacity-0 scale-95"
+  //     >
+  //       <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+  //         <div className="py-1">
+  //           <Menu.Item>
+  //             {({ active }) => (
+  //               <Link
+  //                 to={"/Dashboard"}
+  //                 className={classNames(
+  //                   active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+  //                   "block px-4 py-2 text-sm"
+  //                 )}
+  //               >
+  //                 Dashboard
+  //               </Link>
+  //             )}
+  //           </Menu.Item>
+  //           <Menu.Item>
+  //             {({ active }) => (
+  //               <a
+  //                 href="#"
+  //                 className={classNames(
+  //                   active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+  //                   "block px-4 py-2 text-sm"
+  //                 )}
+  //               >
+  //                 Support
+  //               </a>
+  //             )}
+  //           </Menu.Item>
+  //           <Menu.Item>
+  //             {({ active }) => (
+  //               <a
+  //                 href="#"
+  //                 className={classNames(
+  //                   active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+  //                   "block px-4 py-2 text-sm"
+  //                 )}
+  //               >
+  //                 License
+  //               </a>
+  //             )}
+  //           </Menu.Item>
+  //           <form method="POST" action="#">
+  //             <Menu.Item>
+  //               {({ active }) => (
+  //                 <button
+  //                   type="button"
+  //                   onClick={logOutHandler}
+  //                   className={classNames(
+  //                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+  //                     "block w-full text-left px-4 py-2 text-sm"
+  //                   )}
+  //                 >
+  //                   Sign out
+  //                 </button>
+  //               )}
+  //             </Menu.Item>
+  //           </form>
+  //         </div>
+  //       </Menu.Items>
+  //     </Transition>
+  //   </Menu>
+  // );
+
+  // const guestLinks = (
+  //   <Fragment>
+  //     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+  //       <Link
+  //         to={"/Login"}
+  //         className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium  text-black bg-pink-300 hover:bg-pink-400"
+  //       >
+  //         Sign in
+  //       </Link>
+  //       <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+  //       <Link
+  //         to={"/Register"}
+  //         href="#"
+  //         className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-pink-300 hover:bg-pink-400"
+  //       >
+  //         Create account
+  //       </Link>
+  //     </div>
+  //   </Fragment>
+  // );
+
 
   return (
     <div className="bg-white">
@@ -292,7 +401,7 @@ function NavBar() {
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
                     <a
-                      href="#"
+                      href="/Registro"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Sign in
@@ -328,19 +437,21 @@ function NavBar() {
       </Transition.Root>
 
       <header className=" relative h-screen bg-transparent overflow-hidden">
-      {/* <div className="absolute inset-0 z-0">
-<video src={video}
- autoPlay
- muted
- loop
-  className="w-full h-full object-cover">
-    </video>
-  </div> */}
+        <div className="absolute inset-0 z-0">
+          <video
+            src={video}
+            autoPlay
+            muted
+            loop
+            className="w-full h-full object-cover"
+          ></video>
+        </div>
+        {/* ------------------------------------nav----------------------------------- */}
         <nav
           aria-label="Top"
           className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
         >
-          <div className="border-b border-gray-200 ">
+          <div className=" ">
             <div className="flex h-16 items-center">
               <button
                 type="button"
@@ -490,12 +601,11 @@ function NavBar() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
-                    href="#"
+                  <Link to= "/Registro"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Sign in
-                  </a>
+                  </Link>
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                   <a
                     href="#"
@@ -520,7 +630,7 @@ function NavBar() {
                   </a>
                 </div>
 
-                {/* Search */}
+                {/*----------------------------------- Search---------------------- */}
                 <div className="flex lg:ml-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
@@ -530,41 +640,26 @@ function NavBar() {
                     />
                   </a>
                 </div>
-
-                {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
-                    <ShoppingBagIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
-                    </span>
-                    <span className="sr-only">items in cart, view bag</span>
-                  </a>
-                </div>
               </div>
             </div>
 
-            {/* banner */}
-            <div className="relative bg-transparent overflow-hidden"> 
-  <div className="relative z-10 max-w-full mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8"> 
-    <div className="text-center">
-      <h2 className="text-base font-semibold text-indigo-600 tracking-wide uppercase">
-        Pricing
-      </h2>
-      <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-        Take control of your team.
-      </p>
-      <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-        Start building for free, then add a site plan to go live.
-        Account plans unlock additional features.
-      </p>
-    </div>
-  </div>
-</div>
-
+            {/*------------------------- banner------------------ */}
+            <div className="relative bg-transparent overflow-hidden">
+              <div className="relative z-10 max-w-full mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+                <div className="text-center">
+                  <h2 className="text-base font-semibold text-indigo-600 tracking-wide uppercase">
+                    Pricing
+                  </h2>
+                  <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                    Take control of your team.
+                  </p>
+                  <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
+                    Start building for free, then add a site plan to go live.
+                    Account plans unlock additional features.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </nav>
       </header>

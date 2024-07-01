@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
-import Layout from "../../hocs/layout";
-import Main from "../../components/mainpage/main";
+import Layout from "../../../hocs/layout";
+import SignUp from "../../../components/auth/register"
 
 
-function Home(){
+function Register(){
     return(
         <Layout>
-            <Main/>
+            <SignUp/>
         </Layout>
     )
 }
@@ -17,4 +17,4 @@ const mapStateToProps = (state) => ({
 
 export default connect (mapStateToProps,{
 
-})(Home)
+})(Register)
