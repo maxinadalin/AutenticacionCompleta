@@ -69,7 +69,7 @@ DJANGO_APPS  = [
 
 
 PROJECT_APPS = [
-
+'apps.user',
 ]
 
 THIRD_PARTY_APPS = [
@@ -90,7 +90,7 @@ CKEDITOR_CONFIGS = {
 }
 CKEDITOR_UPLOAD_PATH = "/media/"
 
-
+AUTH_USER_MODEL="user.UserAccount"
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
