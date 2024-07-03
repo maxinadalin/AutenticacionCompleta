@@ -4,7 +4,6 @@ import {Provider} from "react-redux"
 import store from './store';
 import Home from './containers/pages/home';
 import 'flowbite';
-import Register from './containers/pages/auth/register';
 
 
 function App() {
@@ -15,7 +14,7 @@ function App() {
   {/* <Route path='*' element={<Error404/>}/> */}
   <Route path='/' element={<Home/>}/>
 
-  <Route path='/Registro' element={<Register/>}/>
+
   
 </Routes>
     </Router>

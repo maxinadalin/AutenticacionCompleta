@@ -4,7 +4,7 @@ import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
-  ShoppingBagIcon,
+  Bars4Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
@@ -145,117 +145,118 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-function NavBar() {
+function NavBar({
+  isAuthenticated,
+
+}) {
   const [open, setOpen] = useState(false);
 
 
   
-  // const authLinks = (
-  //   <Menu as="div" className="relative inline-block text-left">
-  //     <div>
-  //       <Menu.Button className="">
-  //       <div className="flex -space-x-2 overflow-hidden">
-  //       <img
-  //         className="inline-block h-10 w-10 rounded-full ring-2 ring-pink-100"
-  //         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-  //         alt=""
-  //       />
-  //     </div>
-  //       </Menu.Button>
-  //     </div>
+  const authLinks = (
+    <Bars4Icon as="div" className="relative inline-block text-left">
+      <div>
+        <Bars4Icon.Button className="">
+        <div className="flex -space-x-2 overflow-hidden">
+        <img
+          className="inline-block h-10 w-10 rounded-full ring-2 ring-pink-100"
+          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          alt=""
+        />
+      </div>
+        </Bars4Icon.Button>
+      </div>
 
-  //     <Transition
-  //       as={Fragment}
-  //       enter="transition ease-out duration-100"
-  //       enterFrom="transform opacity-0 scale-95"
-  //       enterTo="transform opacity-100 scale-100"
-  //       leave="transition ease-in duration-75"
-  //       leaveFrom="transform opacity-100 scale-100"
-  //       leaveTo="transform opacity-0 scale-95"
-  //     >
-  //       <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-  //         <div className="py-1">
-  //           <Menu.Item>
-  //             {({ active }) => (
-  //               <Link
-  //                 to={"/Dashboard"}
-  //                 className={classNames(
-  //                   active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-  //                   "block px-4 py-2 text-sm"
-  //                 )}
-  //               >
-  //                 Dashboard
-  //               </Link>
-  //             )}
-  //           </Menu.Item>
-  //           <Menu.Item>
-  //             {({ active }) => (
-  //               <a
-  //                 href="#"
-  //                 className={classNames(
-  //                   active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-  //                   "block px-4 py-2 text-sm"
-  //                 )}
-  //               >
-  //                 Support
-  //               </a>
-  //             )}
-  //           </Menu.Item>
-  //           <Menu.Item>
-  //             {({ active }) => (
-  //               <a
-  //                 href="#"
-  //                 className={classNames(
-  //                   active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-  //                   "block px-4 py-2 text-sm"
-  //                 )}
-  //               >
-  //                 License
-  //               </a>
-  //             )}
-  //           </Menu.Item>
-  //           <form method="POST" action="#">
-  //             <Menu.Item>
-  //               {({ active }) => (
-  //                 <button
-  //                   type="button"
-  //                   onClick={logOutHandler}
-  //                   className={classNames(
-  //                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-  //                     "block w-full text-left px-4 py-2 text-sm"
-  //                   )}
-  //                 >
-  //                   Sign out
-  //                 </button>
-  //               )}
-  //             </Menu.Item>
-  //           </form>
-  //         </div>
-  //       </Menu.Items>
-  //     </Transition>
-  //   </Menu>
-  // );
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Bars4Icon.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="py-1">
+            <Bars4Icon.Item>
+              {({ active }) => (
+                <Link
+                  to={"/Dashboard"}
+                  className={classNames(
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm"
+                  )}
+                >
+                  Dashboard
+                </Link>
+              )}
+            </Bars4Icon.Item>
+            <Bars4Icon.Item>
+              {({ active }) => (
+                <a
+                  href="#"
+                  className={classNames(
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm"
+                  )}
+                >
+                  Support
+                </a>
+              )}
+            </Bars4Icon.Item>
+            <Bars4Icon.Item>
+              {({ active }) => (
+                <a
+                  href="#"
+                  className={classNames(
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm"
+                  )}
+                >
+                  License
+                </a>
+              )}
+            </Bars4Icon.Item>
+            <form method="POST" action="#">
+              <Bars4Icon.Item>
+                {({ active }) => (
+                  <button
+                    type="button"
+                    // onClick={logOutHandler}
+                    className={classNames(
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block w-full text-left px-4 py-2 text-sm"
+                    )}
+                  >
+                    Sign out
+                  </button>
+                )}
+              </Bars4Icon.Item>
+            </form>
+          </div>
+        </Bars4Icon.Items>
+      </Transition>
+    </Bars4Icon>
+  );
 
-  // const guestLinks = (
-  //   <Fragment>
-  //     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-  //       <Link
-  //         to={"/Login"}
-  //         className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium  text-black bg-pink-300 hover:bg-pink-400"
-  //       >
-  //         Sign in
-  //       </Link>
-  //       <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-  //       <Link
-  //         to={"/Register"}
-  //         href="#"
-  //         className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-pink-300 hover:bg-pink-400"
-  //       >
-  //         Create account
-  //       </Link>
-  //     </div>
-  //   </Fragment>
-  // );
+  const guestLinks = (
+    <Fragment>
+      <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                  <Link to= "/Login"
+                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                  >
+                    Sign in
+                  </Link>
+                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+                  <a
+                    href="#"
+                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                  >
+                    Create account
+                  </a>
+                </div>
+    </Fragment>
+  );
 
 
   return (
@@ -401,7 +402,7 @@ function NavBar() {
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
                     <a
-                      href="/Registro"
+                      href="/Login"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Sign in
@@ -601,18 +602,17 @@ function NavBar() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link to= "/Registro"
+                  <Link to= "/Login"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Sign in
                   </Link>
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a
-                    href="#"
+                  <Link to={"/register"}
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Create account
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
@@ -667,6 +667,8 @@ function NavBar() {
   );
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
 export default connect(mapStateToProps, {})(NavBar);
