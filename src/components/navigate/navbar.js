@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { Fragment, useState } from "react";
-import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
+import { Dialog, Popover, Tab, Transition,Menu } from "@headlessui/react";
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
@@ -9,7 +9,8 @@ import {
 } from "@heroicons/react/24/outline";
 
 import video from "../../media/video/video.mp4";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { logout } from "../../redux/actions/auth";
 
 const navigation = {
   categories: [
@@ -147,16 +148,30 @@ function classNames(...classes) {
 
 function NavBar({
   isAuthenticated,
+  logout
 
 }) {
   const [open, setOpen] = useState(false);
+  const [redirect, setRedirect] = useState(false)
 
 
-  
+  const logOutHandler =(e) =>{
+e.preventDefault();
+logout()
+setRedirect(true)
+  }
+
+
+  if (redirect) {
+    <Navigate to={"/"}/>
+  }
+
+
+
   const authLinks = (
-    <Bars4Icon as="div" className="relative inline-block text-left">
+    <Menu as="div" className="relative inline-block text-left opacity-80">
       <div>
-        <Bars4Icon.Button className="">
+        <Menu.Button className="">
         <div className="flex -space-x-2 overflow-hidden">
         <img
           className="inline-block h-10 w-10 rounded-full ring-2 ring-pink-100"
@@ -164,7 +179,7 @@ function NavBar({
           alt=""
         />
       </div>
-        </Bars4Icon.Button>
+        </Menu.Button>
       </div>
 
       <Transition
@@ -176,9 +191,9 @@ function NavBar({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Bars4Icon.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Bars4Icon.Item>
+            <Menu.Item>
               {({ active }) => (
                 <Link
                   to={"/Dashboard"}
@@ -190,8 +205,8 @@ function NavBar({
                   Dashboard
                 </Link>
               )}
-            </Bars4Icon.Item>
-            <Bars4Icon.Item>
+            </Menu.Item>
+            <Menu.Item>
               {({ active }) => (
                 <a
                   href="#"
@@ -203,8 +218,8 @@ function NavBar({
                   Support
                 </a>
               )}
-            </Bars4Icon.Item>
-            <Bars4Icon.Item>
+            </Menu.Item>
+            <Menu.Item>
               {({ active }) => (
                 <a
                   href="#"
@@ -216,13 +231,13 @@ function NavBar({
                   License
                 </a>
               )}
-            </Bars4Icon.Item>
+            </Menu.Item>
             <form method="POST" action="#">
-              <Bars4Icon.Item>
+              <Menu.Item>
                 {({ active }) => (
                   <button
                     type="button"
-                    // onClick={logOutHandler}
+                    onClick={logOutHandler}
                     className={classNames(
                       active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                       "block w-full text-left px-4 py-2 text-sm"
@@ -231,33 +246,34 @@ function NavBar({
                     Sign out
                   </button>
                 )}
-              </Bars4Icon.Item>
+              </Menu.Item>
             </form>
           </div>
-        </Bars4Icon.Items>
+        </Menu.Items>
       </Transition>
-    </Bars4Icon>
+    </Menu>
   );
 
   const guestLinks = (
     <Fragment>
       <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link to= "/Login"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Sign in
-                  </Link>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Create account
-                  </a>
-                </div>
+        <Link
+          to={"/Iniciar sesion"}
+          className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium  text-black bg-pink-300 hover:bg-pink-400"
+        >
+          Sign in
+        </Link>
+        <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+        <Link
+          to={"/Registrar"}
+          href="#"
+          className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black bg-pink-300 hover:bg-pink-400"
+        >
+          Create account
+        </Link>
+      </div>
     </Fragment>
   );
-
 
   return (
     <div className="bg-white">
@@ -402,19 +418,19 @@ function NavBar({
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
                     <a
-                      href="/Login"
+                      href="/Iniciar sesion"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Sign in
                     </a>
                   </div>
                   <div className="flow-root">
-                    <a
-                      href="#"
+                    <Link
+                      to={"/Registrar"}
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Create account
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
@@ -444,7 +460,7 @@ function NavBar({
             autoPlay
             muted
             loop
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-80"
           ></video>
         </div>
         {/* ------------------------------------nav----------------------------------- */}
@@ -599,39 +615,11 @@ function NavBar({
                   ))}
                 </div>
               </Popover.Group>
-
-              <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link to= "/Login"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Sign in
-                  </Link>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <Link to={"/register"}
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Create account
-                  </Link>
-                </div>
-
-                <div className="hidden lg:ml-8 lg:flex">
-                  <a
-                    href="#"
-                    className="flex items-center text-gray-700 hover:text-gray-800"
-                  >
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-sm font-medium">CAD</span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div>
-
+              
+              <div className="ml-auto flex items-center z-20">
+         
                 {/*----------------------------------- Search---------------------- */}
-                <div className="flex lg:ml-6">
+                <div className="flex lg:mr-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon
@@ -640,6 +628,7 @@ function NavBar({
                     />
                   </a>
                 </div>
+                {isAuthenticated ? authLinks : guestLinks}
               </div>
             </div>
 
@@ -671,4 +660,6 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, {})(NavBar);
+export default connect(mapStateToProps, {
+  logout
+})(NavBar);

@@ -1,22 +1,30 @@
 import {
-  SET_AUTH_LOADING,
-  REMOVE_AUTH_LOADING,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  USER_LOADED_SUCCESS,
-  USER_LOADED_FAIL,
-  AUTHENTICATED_SUCCESS,
-  AUTHENTICATED_FAIL,
-  REFRESH_SUCCESS,
-  REFRESH_FAIL,
-  LOGOUT,
+  SIGNUP_SUCCESS,
+    SIGNUP_FAIL,
+    ACTIVATION_SUCCESS,
+    ACTIVATION_FAIL,
+    SET_AUTH_LOADING,
+    REMOVE_AUTH_LOADING,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    USER_LOADED_SUCCESS,
+    USER_LOADED_FAIL,
+    AUTHENTICATED_SUCCESS,
+    AUTHENTICATED_FAIL,
+    REFRESH_SUCCESS,
+    REFRESH_FAIL,
+    LOGOUT,
+    RESET_PASSWORD_SUCCESS,
+    RESET_PASSWORD_FAIL,
+    RESET_PASSWORD_CONFIRM_SUCCESS,
+    RESET_PASSWORD_CONFIRM_FAIL,
 } from "../actions/Types";
 
 const initialState = {
   access: localStorage.getItem("access"), //estas dos variables lo que hacen es llamar del localstorage y ver si existen para agarrar las variables
   refresh: localStorage.getItem("refresh"),
   isAuthenticated: null,
-//   user: null,
+  user: null,
   loading: false,
   //esto es lo que aparece en redux
 };
@@ -35,16 +43,32 @@ export default function (state = initialState, actions) {
         ...state,
         loading: false,
       };
+    case USER_LOADED_SUCCESS:
+      return {
+        ...state,
+        user: payload,
+      };
+    case USER_LOADED_FAIL:
+      return {
+        ...state,
+        user: null,
+      };
+
     case AUTHENTICATED_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
       };
     case AUTHENTICATED_FAIL:
+      localStorage.removeItem("access");
+      localStorage.removeItem("refresh");
       return {
         ...state,
         isAuthenticated: false,
+        access: null,
+        refresh: null,
       };
+
     case LOGIN_SUCCESS:
       localStorage.setItem("access", payload.access);
       localStorage.setItem("refresh", payload.refresh);
@@ -55,8 +79,25 @@ export default function (state = initialState, actions) {
         refresh: localStorage.getItem("refresh"),
       };
 
-    // case SIGNUP_SUCCESS:
-    // case SIGNUP_FAIL:
+    case ACTIVATION_SUCCESS:
+    case ACTIVATION_FAIL:
+    case RESET_PASSWORD_SUCCESS:
+    case RESET_PASSWORD_FAIL:
+    case RESET_PASSWORD_CONFIRM_SUCCESS:
+    case RESET_PASSWORD_CONFIRM_FAIL:
+      return {
+        ...state,
+      };
+
+    case REFRESH_SUCCESS:
+      localStorage.setItem("access", payload.access);
+      return {
+        ...state,
+        access: localStorage.getItem("access"),
+      };
+
+    case SIGNUP_SUCCESS:
+    case SIGNUP_FAIL:
     case LOGIN_FAIL:
     case REFRESH_FAIL:
     case LOGOUT:
@@ -67,10 +108,10 @@ export default function (state = initialState, actions) {
         access: null,
         refresh: null,
         isAuthenticated: false,
-        // user: null,
+        user: null,
       };
 
     default:
-        return state;
+      return state;
   }
 }

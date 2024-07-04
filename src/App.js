@@ -4,6 +4,10 @@ import {Provider} from "react-redux"
 import store from './store';
 import Home from './containers/pages/home';
 import 'flowbite';
+import Sign_Up from './containers/pages/auth/register';
+import Activated from "./containers/pages/auth/activate"
+import Sign_in from "./containers/pages/auth/login"
+import Recover_password from './containers/pages/auth/recover_password';
 
 
 function App() {
@@ -13,6 +17,13 @@ function App() {
 <Routes>
   {/* <Route path='*' element={<Error404/>}/> */}
   <Route path='/' element={<Home/>}/>
+
+  {/* auth */}
+
+  <Route path='/Registrar' element={<Sign_Up/>}/>
+  <Route path="/activate/:uid/:token" element={<Activated />}/>
+  <Route path='/Iniciar sesion' element={<Sign_in/>}/>
+  <Route path='/RecuperarContraseña' element={<Recover_password/>}/>
 
 
   
