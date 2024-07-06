@@ -1,40 +1,50 @@
 import { connect } from "react-redux";
-import {reset_password} from "../../redux/actions/auth"
+import { useParams,Navigate } from "react-router-dom";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import {reset_password_confirm} from "../../redux/actions/auth"
 import { Oval } from "react-loader-spinner";
 
-function Recover_Password({
-    reset_password,
-    loading
-}){
 
-    const [requestSent, setRequestSent] = useState(false);
+function ConfirmPassword({
+    reset_password_confirm,
+    loading
+}) {
+    
+    const params = useParams()
+
+    const [redirect,setRedirect] = useState(false)
 
     const [formdata, setformadata] = useState({
-        email:"",
+        uid: "",
+        token:"",
+        new_password:"",
+        re_new_password:""
     })
 
-    const{email}= formdata
+    const {new_password,re_new_password} = formdata
 
-    const onChange = (e) =>{
-        setformadata({...formdata,[e.target.name] : e.target.value});
+    const onChange = (e) => {
+        setformadata({...formdata, [e.target.name]: e.target.value})
     }
 
-    const onSubmit = (e) =>{
-        e.preventDefault();
-        reset_password(email);
-        setRequestSent(true)
+    const onSubmit = (e) => {
+e.preventDefault();
+const uid = params.uid;
+const token = params.token
+reset_password_confirm(uid,token,new_password,re_new_password);
+if (new_password === re_new_password) {
+    setRedirect(true);
+  }
 
+if (redirect)
+    {
+        <Navigate to={"/"} />
+    }
     }
 
-    if (requestSent && !loading) {
-        return <Navigate to="/" />;
-      }
-
-    return (
+    return(
         <>
-         <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img
             className="mx-auto h-12 w-auto"
@@ -51,18 +61,37 @@ function Recover_Password({
             <form onSubmit={(e) => onSubmit(e)} className="space-y-6">
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Email address
+                  Password
                 </label>
                 <div className="mt-1">
                   <input
-                    id="email"
-                    name="email"
-                    value={email}
+                    id="new_password"
+                    name="new_password"
+                    value={new_password}
                     onChange={(e) => onChange(e)}
-                    type="email"
+                    type="password"
+                    required
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Re_Password
+                </label>
+                <div className="mt-1">
+                  <input
+                    id="re_new_password"
+                    name="re_new_password"
+                    value={re_new_password}
+                    onChange={(e) => onChange(e)}
+                    type="password"
                     required
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
@@ -78,7 +107,7 @@ function Recover_Password({
                     type="submit"
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    Login
+                    Reset Password
                   </button>
                 )}
               </div>
@@ -86,7 +115,7 @@ function Recover_Password({
           </div>
         </div>
       </div>
-        </>
+    </>
     )
 }
 
@@ -94,6 +123,6 @@ const mapStateToProps = (state) => ({
 loading: state.auth.loading
 })
 
-export default connect(mapStateToProps,{
-    reset_password
-})(Recover_Password)
+export default connect (mapStateToProps,{
+    reset_password_confirm
+})(ConfirmPassword)

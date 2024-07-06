@@ -7,7 +7,8 @@ import 'flowbite';
 import Sign_Up from './containers/pages/auth/register';
 import Activated from "./containers/pages/auth/activate"
 import Sign_in from "./containers/pages/auth/login"
-import Recover_password from './containers/pages/auth/recover_password';
+import Recover_password from './containers/pages/auth/recover_password'
+import ConfirmPassword from "./components/auth/reset_password_confirm"
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
   <Route path="/activate/:uid/:token" element={<Activated />}/>
   <Route path='/Iniciar sesion' element={<Sign_in/>}/>
   <Route path='/RecuperarContraseña' element={<Recover_password/>}/>
+  <Route path='/password/reset/confirm/:uid/:token' element={<ConfirmPassword/>}/>
 
 
   
