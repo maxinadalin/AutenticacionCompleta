@@ -9,6 +9,7 @@ import Activated from "./containers/pages/auth/activate"
 import Sign_in from "./containers/pages/auth/login"
 import Recover_password from './containers/pages/auth/recover_password'
 import ConfirmPassword from "./components/auth/reset_password_confirm"
+import Alert from '../src/components/alert/alert';
 
 
 function App() {
@@ -31,7 +32,9 @@ function App() {
   
 </Routes>
     </Router>
+    <Alert/>
 </Provider>
+
   );
 }
 

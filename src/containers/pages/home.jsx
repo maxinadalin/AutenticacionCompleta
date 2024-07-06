@@ -6,7 +6,7 @@ import Main from "../../components/mainpage/main";
 function Home(){
     return(
         <Layout>
-            <Main/>
+            {/* <Main/> */}
         </Layout>
     )
 }

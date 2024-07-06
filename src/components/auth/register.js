@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Register } from "../../redux/actions/auth";
-// import logo from "../../assets/img/sofigurumi.png"
+import logo from "../../media/img/sofigurumi.png"
 import video from "../../media/video/video.mp4";
+import { Link } from "react-router-dom";
 
 
 const SingUp = ({Register}) => {
@@ -35,22 +36,31 @@ const SingUp = ({Register}) => {
     <>
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8
       relative h-screen bg-transparent overflow-hidden">
- 
+ {/* -------------------------------video----------------------------- */}
       <div className="absolute inset-0 z-0">
           <video
             src={video}
             autoPlay
             muted
             loop
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-80"
           ></video>
         </div>
-        <div className="z-10 sm:mx-auto sm:w-full sm:max-w-md">
-          <img
+    {/* ------------------------------------formulario--------------------------------- */}
+
+
+        <div className="z-10 my-8 sm:mx-auto sm:w-full sm:max-w-md opacity-85">
+          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="z-10 sm:mx-auto sm:w-full sm:max-w-md">
+
+            <Link to={"/"}>
+            <img
             className="mx-auto h-12 w-auto"
-            // src={logo}
+            src={logo}
             alt="Workflow"
           />
+            </Link>
+        
           <h2
             id="scroll"
             className="mt-6 text-center text-3xl font-extrabold text-gray-900"
@@ -58,9 +68,6 @@ const SingUp = ({Register}) => {
             Registrarse
           </h2>
         </div>
-
-        <div className="z-10 mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form
               onSubmit={(e) => onSubmit(e)}
               className="space-y-6"
