@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import {check_authenticated,
     Load_user,
     refresh,} from "../redux/actions/auth"
+import { motion } from "framer-motion";
 
 function Layout({ children, check_authenticated,Load_user,refresh }) {
     useEffect(() => {
@@ -14,7 +15,11 @@ function Layout({ children, check_authenticated,Load_user,refresh }) {
       refresh();
     }, [check_authenticated, Load_user, refresh]);
     return (
-        <div>
+        <div
+        // initial= {{opacity: 0, transition:{duration:0.2}}}
+        // animate = {{opacity: 1, transition:{duration:0.2}}}
+        // exit = {{opacity: 0, transition:{duration:0.2}}}
+        >
         <Navbar />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">{children}</div>
